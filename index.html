@@ -114,33 +114,30 @@
                 <div class="glass-card demo-card">
                     <div class="demo-header">
                         <div class="demo-dots"><span></span><span></span><span></span></div>
-                        <span class="demo-label">Voice AI System</span>
+                        <span class="demo-label">Video AI System</span>
                         <span class="status-light status-live"><span class="status-dot"></span>Live</span>
                     </div>
                     <div class="voice-demo">
-                        <div class="voice-visualizer" id="voiceVisualizer">
-                            <div class="waveform-bars">
-                                <span></span><span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span><span></span>
-                            </div>
+                        <div class="video-demo-visual" id="videoVisualizer">
+                            <div class="viewfinder-corner top-left"></div>
+                            <div class="viewfinder-corner top-right"></div>
+                            <div class="viewfinder-corner bottom-left"></div>
+                            <div class="viewfinder-corner bottom-right"></div>
+                            <div class="scanner-line"></div>
+                            <div class="analysis-grid"></div>
+                            <div class="video-overlay-text">Analyzing Video Feed...</div>
                         </div>
                         <button class="mic-btn" id="micBtn">
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
-                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-                                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                                <line x1="12" y1="19" x2="12" y2="23" />
-                                <line x1="8" y1="23" x2="16" y2="23" />
+                                <path d="M23 7l-7 5 7 5V7z" />
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
                             </svg>
                         </button>
                         <div class="voice-status">
-                            <span class="voice-label" id="voiceLabel">Tap to start listening</span>
+                            <span class="voice-label" id="voiceLabel">Tap to activate camera</span>
                             <div class="voice-transcript" id="voiceTranscript">
-                                <p>"Analyzing audio input in real-time..."</p>
+                                <p>"Waiting for video input..."</p>
                             </div>
                         </div>
                     </div>
@@ -148,19 +145,22 @@
             </div>
             <div class="product-info reveal">
                 <span class="product-tag">Product 01</span>
-                <h3 class="product-title">Voice-to-Voice AI System</h3>
-                <p class="product-tagline">Real-time speech understanding and generation</p>
-                <p class="product-desc">End-to-end voice AI with real-time ASR, natural language understanding, and
-                    neural TTS. Supports multi-language, emotion detection, and voice cloning capabilities.</p>
+                <h3 class="product-title">Video-to-Voice AI System</h3>
+                <p class="product-tagline">Real-time video understanding & interaction</p>
+                <p class="product-desc">Multimodal AI that sees and speaks. Processes real-time video feeds with
+                    frame-by-frame understanding to generate context-aware voice responses instantly.</p>
                 <ul class="feature-list">
-                    <li><span class="feat-icon">🎙️</span> Real-time ASR with streaming transcription</li>
-                    <li><span class="feat-icon">🗣️</span> Neural TTS with voice cloning</li>
-                    <li><span class="feat-icon">🌍</span> 40+ language support</li>
-                    <li><span class="feat-icon">💬</span> Emotion-aware response generation</li>
+                    <li><span class="feat-icon">👁️</span> Real-time computer vision analysis</li>
+                    <li><span class="feat-icon">🗣️</span> Context-aware voice responses</li>
+                    <li><span class="feat-icon">⚡</span>
+                        <100ms visual-to-voice latency</li>
+                    <li><span class="feat-icon">🧠</span> Multimodal reasoning engine</li>
                 </ul>
                 <div class="product-actions">
                     <a href="#" class="btn btn-primary glow-btn demo-launch-btn"
                         data-demo-url="https://video-to-audio-2.netlify.app/"><span>Try Demo</span></a>
+                    <a href="ai_interview_flowchart_daymode.html" target="_blank"
+                        class="btn btn-outline glow-btn"><span>Document</span></a>
                     <span class="status-badge">● Production Ready</span>
                 </div>
             </div>
@@ -573,9 +573,7 @@
                 <h2 class="section-title">Let's Build Something <span class="gradient-text">Extraordinary</span></h2>
                 <p class="section-sub">Have an AI project in mind? Let's discuss how we can bring it to production.</p>
                 <div class="contact-ctas">
-                    <a href="#"
-                        onclick="event.preventDefault(); window.location.href='mailto:ajaybeniwal070@gmail.com';"
-                        class="btn btn-primary glow-btn"><span>Start a
+                    <a href="mailto:ajaybeniwal070@gmail.com" class="btn btn-primary glow-btn"><span>Start a
                             Conversation</span></a>
                     <a href="https://github.com/ajaybenii" target="_blank" rel="noopener noreferrer"
                         class="btn btn-outline glow-btn"><span>View GitHub</span></a>

@@ -278,7 +278,7 @@
   micBtn.addEventListener('click', () => {
     micActive = !micActive;
     micBtn.classList.toggle('active', micActive);
-    voiceLabel.textContent = micActive ? '● Listening...' : 'Tap to start listening';
+    voiceLabel.textContent = micActive ? '● Analyzing Video...' : 'Tap to activate camera';
   });
 
   // ──────────────────────────────────────────────
