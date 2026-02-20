@@ -6,124 +6,124 @@
   'use strict';
 
   // ──────────────────────────────────────────────
-  // 1. 3D STAR FIELD CANVAS
+  // 1. PARTICLE NETWORK CANVAS
   // ──────────────────────────────────────────────
   const canvas = document.getElementById('heroCanvas');
   const ctx = canvas.getContext('2d');
+  let particles = [];
+  let mouse = { x: null, y: null };
   let animFrame;
 
-  // Vanishing point (smoothly lerps toward mouse)
-  let vpX = window.innerWidth / 2;
-  let vpY = window.innerHeight / 2;
-  let targetVpX = vpX;
-  let targetVpY = vpY;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    vpX = targetVpX = canvas.width / 2;
-    vpY = targetVpY = canvas.height / 2;
   }
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
 
-  // ── Star settings ──
-  const NUM_STARS = 280;
-  const DEPTH = 1000;
-  const STAR_SPEED = 2.8;
-
-  const STAR_COLORS = [
-    '99,102,241',   // indigo
-    '139,92,246',   // violet
-    '6,182,212',    // cyan
-    '168,85,247',   // purple
-    '120,160,255',  // blue
+  // Particle colour palette — dark & crisp on white background
+  const PARTICLE_COLORS = [
+    { fill: 'rgba(25,  35, 115, 0.88)', stroke: 'rgba(0,   0,  40, 0.95)' },  // deep navy
+    { fill: 'rgba(55,  80, 210, 0.82)', stroke: 'rgba(10, 20,  90, 0.95)' },  // indigo-blue
+    { fill: 'rgba(18,  55, 165, 0.88)', stroke: 'rgba(0,   0,  65, 0.95)' },  // royal blue
+    { fill: 'rgba(72,  36, 182, 0.82)', stroke: 'rgba(18,  0,  80, 0.95)' },  // deep violet
   ];
 
-  function resetStar(s, spread) {
-    s.x = (Math.random() - 0.5) * DEPTH * 2;
-    s.y = (Math.random() - 0.5) * DEPTH * 2;
-    s.z = spread ? Math.random() * DEPTH : DEPTH;
-    s.pz = s.z;
-    s.color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
-    return s;
-  }
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.55;
+      this.vy = (Math.random() - 0.5) * 0.55;
+      this.radius = Math.random() * 2.2 + 1.2;  // bigger than original
+      const c = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+      this.fill = c.fill;
+      this.stroke = c.stroke;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.fill;
+      ctx.fill();
+      // Crisp dark border around each particle
+      ctx.strokeStyle = this.stroke;
+      ctx.lineWidth = 0.9;
+      ctx.stroke();
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
 
-  const stars = Array.from({ length: NUM_STARS }, () => resetStar({}, true));
-
-  function animateCanvas() {
-    const W = canvas.width;
-    const H = canvas.height;
-
-    // Smooth vanishing point
-    vpX += (targetVpX - vpX) * 0.055;
-    vpY += (targetVpY - vpY) * 0.055;
-
-    ctx.clearRect(0, 0, W, H);
-
-    for (const s of stars) {
-      s.pz = s.z;
-      s.z -= STAR_SPEED;
-
-      if (s.z <= 1) { resetStar(s, false); continue; }
-
-      // Perspective project current position
-      const sc = DEPTH / s.z;
-      const sx = s.x * sc + vpX;
-      const sy = s.y * sc + vpY;
-
-      // Perspective project previous position (for trail)
-      const psc = DEPTH / s.pz;
-      const px = s.x * psc + vpX;
-      const py = s.y * psc + vpY;
-
-      // Cull off-screen
-      if (sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) {
-        resetStar(s, false); continue;
+      // Mouse repulsion — particles scatter when cursor is close
+      if (mouse.x !== null) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          const force = (130 - dist) / 130 * 0.025;
+          this.vx += dx * force;
+          this.vy += dy * force;
+        }
       }
 
-      const opacity = Math.min(0.9, (1 - s.z / DEPTH) * 0.9 + 0.1);
-      const radius = Math.max(0.3, sc * 1.4);
+      this.vx *= 0.985;
+      this.vy *= 0.985;
 
-      // Trail line
-      ctx.beginPath();
-      ctx.moveTo(px, py);
-      ctx.lineTo(sx, sy);
-      ctx.strokeStyle = `rgba(${s.color},${(opacity * 0.5).toFixed(2)})`;
-      ctx.lineWidth = radius * 0.55;
-      ctx.stroke();
-
-      // Star dot
-      ctx.beginPath();
-      ctx.arc(sx, sy, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${s.color},${opacity.toFixed(2)})`;
-      ctx.fill();
+      if (this.x < 0) this.x = canvas.width;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.y < 0) this.y = canvas.height;
+      if (this.y > canvas.height) this.y = 0;
     }
+  }
 
+  function initParticles() {
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 7000), 160);
+    particles = [];
+    for (let i = 0; i < count; i++) particles.push(new Particle());
+  }
+  initParticles();
+
+  function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 140) {
+          const alpha = (1 - dist / 140) * 0.55;   // clearly visible lines
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(25, 45, 160, ${alpha})`;  // dark blue lines
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animateCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawConnections();
     animFrame = requestAnimationFrame(animateCanvas);
   }
   animateCanvas();
 
-  // Cursor → shift vanishing point so stars steer toward mouse
   document.addEventListener('mousemove', (e) => {
-    // Blend: 70% cursor, 30% center — so field tilts but stays readable
-    targetVpX = e.clientX * 0.7 + canvas.width * 0.15;
-    targetVpY = e.clientY * 0.7 + canvas.height * 0.15;
-
-    // Subtle hero parallax
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
     const hero = document.querySelector('.hero-content');
     if (hero) {
       const cx = (e.clientX / window.innerWidth - 0.5) * 2;
       const cy = (e.clientY / window.innerHeight - 0.5) * 2;
-      hero.style.transform = `translate(${cx * 6}px, ${cy * 4}px)`;
+      hero.style.transform = `translate(${cx * 8}px, ${cy * 5}px)`;
     }
   });
 
-  document.addEventListener('mouseleave', () => {
-    targetVpX = canvas.width / 2;
-    targetVpY = canvas.height / 2;
-  });
-
+  document.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
 
 
