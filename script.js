@@ -78,8 +78,8 @@
   }
 
   function initParticles() {
-    // Reduce particle count slightly to drastically improve O(N^2) performance
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 110);
+    // Reduce particle count slightly but add +20 as requested
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 130);
     particles = [];
     for (let i = 0; i < count; i++) particles.push(new Particle());
   }
