@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Options — Pick Your Favorite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 48px;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            border-color: #0ea5e9;
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 24px;
+        }
+
+        .preview-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .preview-row .size-label {
+            font-size: 10px;
+            color: #555;
+            text-align: center;
+        }
+
+        .favicon-large {
+            width: 128px;
+            height: 128px;
+            border-radius: 12px;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #222;
+        }
+
+        .favicon-medium {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #222;
+        }
+
+        .favicon-small {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #222;
+        }
+
+        /* Tab preview mock */
+        .tab-preview {
+            background: #1a1a2e;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            border: 1px solid #333;
+            border-bottom: none;
+        }
+
+        .tab-preview span {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .tab-preview .tab-favicon {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🎨 Choose Your Favicon</h1>
+    <p class="subtitle">Pick your favorite — shown at 128px, 48px, and 16px (actual tab size) + browser tab mock</p>
+
+    <div class="grid">
+
+        <!-- OPTION 1: Brain + Audio Pulse -->
+        <div class="card">
+            <h3>Option 1 — Brain Pulse</h3>
+            <p>AI brain with audio wave pulse</p>
+            <div class="preview-row">
+                <div>
+                    <div class="favicon-large">
+                        <svg viewBox="0 0 64 64" width="96" height="96">
+                            <defs>
+                                <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#7c3aed" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="32" cy="32" r="28" fill="none" stroke="url(#g1)" stroke-width="2.5"
+                                opacity="0.3" />
+                            <!-- Brain shape -->
+                            <path
+                                d="M32 14c-6 0-11 3-13 8-1 3 0 6 2 8-2 2-3 5-2 8 1 4 5 7 9 7h1c1 3 3 5 5 5s4-2 5-5h1c4 0 8-3 9-7 1-3 0-6-2-8 2-2 3-5 2-8-2-5-7-8-13-8z"
+                                fill="url(#g1)" opacity="0.85" />
+                            <!-- Center line -->
+                            <line x1="32" y1="16" x2="32" y2="48" stroke="#0a0a0a" stroke-width="1.5" opacity="0.6" />
+                            <!-- Audio pulse waves -->
+                            <g stroke="#0ea5e9" stroke-width="2" fill="none" opacity="0.9">
+                                <path d="M18 32 Q18 26 16 32 Q16 38 18 32">
+                                    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.5s"
+                                        repeatCount="indefinite" />
+                                </path>
+                                <path d="M14 32 Q14 22 11 32 Q11 42 14 32">
+                                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.5s" begin="0.3s"
+                                        repeatCount="indefinite" />
+                                </path>
+                            </g>
+                            <g stroke="#7c3aed" stroke-width="2" fill="none" opacity="0.9">
+                                <path d="M46 32 Q46 26 48 32 Q48 38 46 32">
+                                    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.5s"
+                                        repeatCount="indefinite" />
+                                </path>
+                                <path d="M50 32 Q50 22 53 32 Q53 42 50 32">
+                                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.5s" begin="0.3s"
+                                        repeatCount="indefinite" />
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="size-label">128px</div>
+                </div>
+                <div>
+                    <div class="favicon-medium">
+                        <svg viewBox="0 0 64 64" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g1b" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#7c3aed" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="32" cy="32" r="28" fill="none" stroke="url(#g1b)" stroke-width="3"
+                                opacity="0.3" />
+                            <path
+                                d="M32 14c-6 0-11 3-13 8-1 3 0 6 2 8-2 2-3 5-2 8 1 4 5 7 9 7h1c1 3 3 5 5 5s4-2 5-5h1c4 0 8-3 9-7 1-3 0-6-2-8 2-2 3-5 2-8-2-5-7-8-13-8z"
+                                fill="url(#g1b)" opacity="0.85" />
+                        </svg>
+                    </div>
+                    <div class="size-label">48px</div>
+                </div>
+                <div>
+                    <div class="favicon-small">
+                        <svg viewBox="0 0 64 64" width="16" height="16">
+                            <defs>
+                                <linearGradient id="g1c" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#7c3aed" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M32 14c-6 0-11 3-13 8-1 3 0 6 2 8-2 2-3 5-2 8 1 4 5 7 9 7h1c1 3 3 5 5 5s4-2 5-5h1c4 0 8-3 9-7 1-3 0-6-2-8 2-2 3-5 2-8-2-5-7-8-13-8z"
+                                fill="url(#g1c)" />
+                        </svg>
+                    </div>
+                    <div class="size-label">16px</div>
+                </div>
+            </div>
+            <div class="tab-preview">
+                <svg viewBox="0 0 64 64" class="tab-favicon">
+                    <defs>
+                        <linearGradient id="g1d" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0ea5e9" />
+                            <stop offset="100%" stop-color="#7c3aed" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d="M32 14c-6 0-11 3-13 8-1 3 0 6 2 8-2 2-3 5-2 8 1 4 5 7 9 7h1c1 3 3 5 5 5s4-2 5-5h1c4 0 8-3 9-7 1-3 0-6-2-8 2-2 3-5 2-8-2-5-7-8-13-8z"
+                        fill="url(#g1d)" />
+                </svg>
+                <span>Ajay Beniwal — AI Engi...</span>
+            </div>
+        </div>
+
+        <!-- OPTION 2: Geometric AI Monogram -->
+        <div class="card">
+            <h3>Option 2 — AI Circuit</h3>
+            <p>Geometric "AI" with circuit lines</p>
+            <div class="preview-row">
+                <div>
+                    <div class="favicon-large">
+                        <svg viewBox="0 0 64 64" width="96" height="96">
+                            <defs>
+                                <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="6" y="6" width="52" height="52" rx="12" fill="none" stroke="url(#g2)"
+                                stroke-width="2" opacity="0.4" />
+                            <!-- A -->
+                            <path d="M16 46 L26 18 L30 18 L22 46 Z" fill="url(#g2)" />
+                            <rect x="18" y="34" width="10" height="3" rx="1" fill="url(#g2)" />
+                            <!-- I -->
+                            <rect x="36" y="18" width="5" height="28" rx="2" fill="url(#g2)" />
+                            <rect x="34" y="18" width="9" height="3" rx="1" fill="url(#g2)" />
+                            <rect x="34" y="43" width="9" height="3" rx="1" fill="url(#g2)" />
+                            <!-- Circuit dots -->
+                            <circle cx="10" cy="32" r="2" fill="#0ea5e9" opacity="0.6">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="54" cy="32" r="2" fill="#2563eb" opacity="0.6">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="32" cy="10" r="2" fill="#0ea5e9" opacity="0.6">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="32" cy="54" r="2" fill="#2563eb" opacity="0.6">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="size-label">128px</div>
+                </div>
+                <div>
+                    <div class="favicon-medium">
+                        <svg viewBox="0 0 64 64" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g2b" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="6" y="6" width="52" height="52" rx="12" fill="none" stroke="url(#g2b)"
+                                stroke-width="3" opacity="0.4" />
+                            <path d="M16 46 L26 18 L30 18 L22 46 Z" fill="url(#g2b)" />
+                            <rect x="18" y="34" width="10" height="3" rx="1" fill="url(#g2b)" />
+                            <rect x="36" y="18" width="5" height="28" rx="2" fill="url(#g2b)" />
+                            <rect x="34" y="18" width="9" height="3" rx="1" fill="url(#g2b)" />
+                            <rect x="34" y="43" width="9" height="3" rx="1" fill="url(#g2b)" />
+                        </svg>
+                    </div>
+                    <div class="size-label">48px</div>
+                </div>
+                <div>
+                    <div class="favicon-small">
+                        <svg viewBox="0 0 64 64" width="16" height="16">
+                            <defs>
+                                <linearGradient id="g2c" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="6" y="6" width="52" height="52" rx="12" fill="url(#g2c)" opacity="0.15" />
+                            <path d="M16 46 L26 18 L30 18 L22 46 Z" fill="url(#g2c)" />
+                            <rect x="18" y="34" width="10" height="3" rx="1" fill="url(#g2c)" />
+                            <rect x="36" y="18" width="5" height="28" rx="2" fill="url(#g2c)" />
+                        </svg>
+                    </div>
+                    <div class="size-label">16px</div>
+                </div>
+            </div>
+            <div class="tab-preview">
+                <svg viewBox="0 0 64 64" class="tab-favicon">
+                    <defs>
+                        <linearGradient id="g2d" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2563eb" />
+                            <stop offset="100%" stop-color="#0ea5e9" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="6" y="6" width="52" height="52" rx="12" fill="url(#g2d)" opacity="0.15" />
+                    <path d="M16 46 L26 18 L30 18 L22 46 Z" fill="url(#g2d)" />
+                    <rect x="18" y="34" width="10" height="3" rx="1" fill="url(#g2d)" />
+                    <rect x="36" y="18" width="5" height="28" rx="2" fill="url(#g2d)" />
+                </svg>
+                <span>Ajay Beniwal — AI Engi...</span>
+            </div>
+        </div>
+
+        <!-- OPTION 3: Hexagon Robot Face -->
+        <div class="card">
+            <h3>Option 3 — AI Hex Bot</h3>
+            <p>Futuristic hexagon with AI face</p>
+            <div class="preview-row">
+                <div>
+                    <div class="favicon-large">
+                        <svg viewBox="0 0 64 64" width="96" height="96">
+                            <defs>
+                                <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#16a34a" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Hexagon -->
+                            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="none" stroke="url(#g3)"
+                                stroke-width="2.5" />
+                            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="url(#g3)" opacity="0.1" />
+                            <!-- Eyes -->
+                            <circle cx="22" cy="28" r="5" fill="url(#g3)">
+                                <animate attributeName="r" values="5;4;5" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="42" cy="28" r="5" fill="url(#g3)">
+                                <animate attributeName="r" values="5;4;5" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="22" cy="27" r="2" fill="#0a0a0a" />
+                            <circle cx="42" cy="27" r="2" fill="#0a0a0a" />
+                            <!-- Mouth/speaker -->
+                            <rect x="24" y="40" width="16" height="3" rx="1.5" fill="url(#g3)" opacity="0.8" />
+                            <rect x="27" y="44" width="10" height="2" rx="1" fill="url(#g3)" opacity="0.5" />
+                            <!-- Antenna -->
+                            <line x1="32" y1="4" x2="32" y2="-2" stroke="url(#g3)" stroke-width="2" />
+                            <circle cx="32" cy="-3" r="2.5" fill="#16a34a">
+                                <animate attributeName="fill" values="#16a34a;#0ea5e9;#16a34a" dur="2s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="size-label">128px</div>
+                </div>
+                <div>
+                    <div class="favicon-medium">
+                        <svg viewBox="0 0 64 64" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g3b" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#16a34a" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="url(#g3b)" opacity="0.15" />
+                            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="none" stroke="url(#g3b)"
+                                stroke-width="3" />
+                            <circle cx="22" cy="28" r="5" fill="url(#g3b)" />
+                            <circle cx="42" cy="28" r="5" fill="url(#g3b)" />
+                            <circle cx="22" cy="27" r="2" fill="#0a0a0a" />
+                            <circle cx="42" cy="27" r="2" fill="#0a0a0a" />
+                            <rect x="24" y="40" width="16" height="3" rx="1.5" fill="url(#g3b)" opacity="0.8" />
+                        </svg>
+                    </div>
+                    <div class="size-label">48px</div>
+                </div>
+                <div>
+                    <div class="favicon-small">
+                        <svg viewBox="0 0 64 64" width="16" height="16">
+                            <defs>
+                                <linearGradient id="g3c" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#16a34a" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="url(#g3c)" opacity="0.2" />
+                            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="none" stroke="url(#g3c)"
+                                stroke-width="4" />
+                            <circle cx="22" cy="28" r="6" fill="url(#g3c)" />
+                            <circle cx="42" cy="28" r="6" fill="url(#g3c)" />
+                        </svg>
+                    </div>
+                    <div class="size-label">16px</div>
+                </div>
+            </div>
+            <div class="tab-preview">
+                <svg viewBox="0 0 64 64" class="tab-favicon">
+                    <defs>
+                        <linearGradient id="g3d" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#16a34a" />
+                            <stop offset="100%" stop-color="#0ea5e9" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="url(#g3d)" opacity="0.2" />
+                    <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="none" stroke="url(#g3d)"
+                        stroke-width="4" />
+                    <circle cx="22" cy="28" r="6" fill="url(#g3d)" />
+                    <circle cx="42" cy="28" r="6" fill="url(#g3d)" />
+                </svg>
+                <span>Ajay Beniwal — AI Engi...</span>
+            </div>
+        </div>
+
+        <!-- OPTION 4: Voice Bubble -->
+        <div class="card">
+            <h3>Option 4 — Voice Bubble</h3>
+            <p>Chat bubble with audio waveform</p>
+            <div class="preview-row">
+                <div>
+                    <div class="favicon-large">
+                        <svg viewBox="0 0 64 64" width="96" height="96">
+                            <defs>
+                                <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7c3aed" />
+                                    <stop offset="100%" stop-color="#db2777" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Chat bubble -->
+                            <path
+                                d="M8 12 h48 a4 4 0 0 1 4 4 v28 a4 4 0 0 1-4 4 H24 l-10 10 v-10 H8 a4 4 0 0 1-4-4 V16 a4 4 0 0 1 4-4z"
+                                fill="url(#g4)" opacity="0.9" />
+                            <!-- Waveform bars -->
+                            <g fill="#fff" opacity="0.9">
+                                <rect x="16" y="28" width="3" height="8" rx="1.5">
+                                    <animate attributeName="height" values="8;16;8" dur="0.8s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="y" values="28;24;28" dur="0.8s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="22" y="24" width="3" height="16" rx="1.5">
+                                    <animate attributeName="height" values="16;8;16" dur="0.8s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="y" values="24;28;24" dur="0.8s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="28" y="22" width="3" height="20" rx="1.5">
+                                    <animate attributeName="height" values="20;10;20" dur="0.8s" begin="0.1s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="y" values="22;27;22" dur="0.8s" begin="0.1s"
+                                        repeatCount="indefinite" />
+                                </rect>
+                                <rect x="34" y="26" width="3" height="12" rx="1.5">
+                                    <animate attributeName="height" values="12;20;12" dur="0.8s" begin="0.2s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="y" values="26;22;26" dur="0.8s" begin="0.2s"
+                                        repeatCount="indefinite" />
+                                </rect>
+                                <rect x="40" y="24" width="3" height="16" rx="1.5">
+                                    <animate attributeName="height" values="16;6;16" dur="0.8s" begin="0.3s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="y" values="24;29;24" dur="0.8s" begin="0.3s"
+                                        repeatCount="indefinite" />
+                                </rect>
+                                <rect x="46" y="28" width="3" height="8" rx="1.5">
+                                    <animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="y" values="28;25;28" dur="0.8s" begin="0.4s"
+                                        repeatCount="indefinite" />
+                                </rect>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="size-label">128px</div>
+                </div>
+                <div>
+                    <div class="favicon-medium">
+                        <svg viewBox="0 0 64 64" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g4b" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7c3aed" />
+                                    <stop offset="100%" stop-color="#db2777" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M8 12 h48 a4 4 0 0 1 4 4 v28 a4 4 0 0 1-4 4 H24 l-10 10 v-10 H8 a4 4 0 0 1-4-4 V16 a4 4 0 0 1 4-4z"
+                                fill="url(#g4b)" />
+                            <g fill="#fff">
+                                <rect x="16" y="28" width="3" height="8" rx="1.5" />
+                                <rect x="22" y="24" width="3" height="16" rx="1.5" />
+                                <rect x="28" y="22" width="3" height="20" rx="1.5" />
+                                <rect x="34" y="26" width="3" height="12" rx="1.5" />
+                                <rect x="40" y="24" width="3" height="16" rx="1.5" />
+                                <rect x="46" y="28" width="3" height="8" rx="1.5" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="size-label">48px</div>
+                </div>
+                <div>
+                    <div class="favicon-small">
+                        <svg viewBox="0 0 64 64" width="16" height="16">
+                            <defs>
+                                <linearGradient id="g4c" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7c3aed" />
+                                    <stop offset="100%" stop-color="#db2777" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M8 12 h48 a4 4 0 0 1 4 4 v28 a4 4 0 0 1-4 4 H24 l-10 10 v-10 H8 a4 4 0 0 1-4-4 V16 a4 4 0 0 1 4-4z"
+                                fill="url(#g4c)" />
+                            <g fill="#fff">
+                                <rect x="18" y="26" width="4" height="12" rx="2" />
+                                <rect x="26" y="22" width="4" height="20" rx="2" />
+                                <rect x="34" y="26" width="4" height="12" rx="2" />
+                                <rect x="42" y="24" width="4" height="16" rx="2" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="size-label">16px</div>
+                </div>
+            </div>
+            <div class="tab-preview">
+                <svg viewBox="0 0 64 64" class="tab-favicon">
+                    <defs>
+                        <linearGradient id="g4d" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#7c3aed" />
+                            <stop offset="100%" stop-color="#db2777" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d="M8 12 h48 a4 4 0 0 1 4 4 v28 a4 4 0 0 1-4 4 H24 l-10 10 v-10 H8 a4 4 0 0 1-4-4 V16 a4 4 0 0 1 4-4z"
+                        fill="url(#g4d)" />
+                    <g fill="#fff">
+                        <rect x="18" y="26" width="4" height="12" rx="2" />
+                        <rect x="26" y="22" width="4" height="20" rx="2" />
+                        <rect x="34" y="26" width="4" height="12" rx="2" />
+                        <rect x="42" y="24" width="4" height="16" rx="2" />
+                    </g>
+                </svg>
+                <span>Ajay Beniwal — AI Engi...</span>
+            </div>
+        </div>
+
+        <!-- OPTION 5: Golden Diamond Network -->
+        <div class="card">
+            <h3>Option 5 — Neural Diamond</h3>
+            <p>Diamond with neural network nodes</p>
+            <div class="preview-row">
+                <div>
+                    <div class="favicon-large">
+                        <svg viewBox="0 0 64 64" width="96" height="96">
+                            <defs>
+                                <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#d97706" />
+                                    <stop offset="100%" stop-color="#f59e0b" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Diamond -->
+                            <polygon points="32,4 58,32 32,60 6,32" fill="none" stroke="url(#g5)" stroke-width="2.5" />
+                            <polygon points="32,4 58,32 32,60 6,32" fill="url(#g5)" opacity="0.1" />
+                            <!-- Neural network lines -->
+                            <line x1="32" y1="18" x2="22" y2="32" stroke="#d97706" stroke-width="1.5" opacity="0.5" />
+                            <line x1="32" y1="18" x2="42" y2="32" stroke="#d97706" stroke-width="1.5" opacity="0.5" />
+                            <line x1="22" y1="32" x2="32" y2="46" stroke="#f59e0b" stroke-width="1.5" opacity="0.5" />
+                            <line x1="42" y1="32" x2="32" y2="46" stroke="#f59e0b" stroke-width="1.5" opacity="0.5" />
+                            <line x1="22" y1="32" x2="42" y2="32" stroke="#d97706" stroke-width="1" opacity="0.3" />
+                            <!-- Nodes -->
+                            <circle cx="32" cy="18" r="4" fill="url(#g5)">
+                                <animate attributeName="r" values="4;5;4" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="22" cy="32" r="4" fill="url(#g5)">
+                                <animate attributeName="r" values="4;5;4" dur="2s" begin="0.5s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="42" cy="32" r="4" fill="url(#g5)">
+                                <animate attributeName="r" values="4;5;4" dur="2s" begin="1s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="32" cy="46" r="4" fill="url(#g5)">
+                                <animate attributeName="r" values="4;5;4" dur="2s" begin="1.5s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="size-label">128px</div>
+                </div>
+                <div>
+                    <div class="favicon-medium">
+                        <svg viewBox="0 0 64 64" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g5b" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#d97706" />
+                                    <stop offset="100%" stop-color="#f59e0b" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="32,4 58,32 32,60 6,32" fill="url(#g5b)" opacity="0.15" />
+                            <polygon points="32,4 58,32 32,60 6,32" fill="none" stroke="url(#g5b)" stroke-width="3" />
+                            <circle cx="32" cy="18" r="5" fill="url(#g5b)" />
+                            <circle cx="22" cy="32" r="5" fill="url(#g5b)" />
+                            <circle cx="42" cy="32" r="5" fill="url(#g5b)" />
+                            <circle cx="32" cy="46" r="5" fill="url(#g5b)" />
+                        </svg>
+                    </div>
+                    <div class="size-label">48px</div>
+                </div>
+                <div>
+                    <div class="favicon-small">
+                        <svg viewBox="0 0 64 64" width="16" height="16">
+                            <defs>
+                                <linearGradient id="g5c" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#d97706" />
+                                    <stop offset="100%" stop-color="#f59e0b" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="32,4 58,32 32,60 6,32" fill="url(#g5c)" opacity="0.2" />
+                            <polygon points="32,4 58,32 32,60 6,32" fill="none" stroke="url(#g5c)" stroke-width="4" />
+                        </svg>
+                    </div>
+                    <div class="size-label">16px</div>
+                </div>
+            </div>
+            <div class="tab-preview">
+                <svg viewBox="0 0 64 64" class="tab-favicon">
+                    <defs>
+                        <linearGradient id="g5d" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#d97706" />
+                            <stop offset="100%" stop-color="#f59e0b" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="32,4 58,32 32,60 6,32" fill="url(#g5d)" opacity="0.2" />
+                    <polygon points="32,4 58,32 32,60 6,32" fill="none" stroke="url(#g5d)" stroke-width="4" />
+                    <circle cx="32" cy="32" r="6" fill="url(#g5d)" />
+                </svg>
+                <span>Ajay Beniwal — AI Engi...</span>
+            </div>
+        </div>
+
+        <!-- OPTION 6: Mic + Sound Rings -->
+        <div class="card">
+            <h3>Option 6 — Live Mic</h3>
+            <p>Microphone with pulsing sound rings</p>
+            <div class="preview-row">
+                <div>
+                    <div class="favicon-large">
+                        <svg viewBox="0 0 64 64" width="96" height="96">
+                            <defs>
+                                <linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#16a34a" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Pulsing rings -->
+                            <circle cx="32" cy="28" r="24" fill="none" stroke="#0ea5e9" stroke-width="1.5"
+                                opacity="0.15">
+                                <animate attributeName="r" values="18;26;18" dur="2s" repeatCount="indefinite" />
+                                <animate attributeName="opacity" values="0.3;0.05;0.3" dur="2s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="32" cy="28" r="20" fill="none" stroke="#16a34a" stroke-width="1.5"
+                                opacity="0.2">
+                                <animate attributeName="r" values="14;22;14" dur="2s" begin="0.3s"
+                                    repeatCount="indefinite" />
+                                <animate attributeName="opacity" values="0.4;0.08;0.4" dur="2s" begin="0.3s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <!-- Mic body -->
+                            <rect x="26" y="14" width="12" height="22" rx="6" fill="url(#g6)" />
+                            <!-- Mic arc -->
+                            <path d="M20 30 Q20 44 32 44 Q44 44 44 30" fill="none" stroke="url(#g6)" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <!-- Mic stand -->
+                            <line x1="32" y1="44" x2="32" y2="54" stroke="url(#g6)" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <line x1="25" y1="54" x2="39" y2="54" stroke="url(#g6)" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <!-- Mic lines -->
+                            <line x1="29" y1="20" x2="35" y2="20" stroke="#0a0a0a" stroke-width="1" opacity="0.3" />
+                            <line x1="29" y1="24" x2="35" y2="24" stroke="#0a0a0a" stroke-width="1" opacity="0.3" />
+                            <line x1="29" y1="28" x2="35" y2="28" stroke="#0a0a0a" stroke-width="1" opacity="0.3" />
+                        </svg>
+                    </div>
+                    <div class="size-label">128px</div>
+                </div>
+                <div>
+                    <div class="favicon-medium">
+                        <svg viewBox="0 0 64 64" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g6b" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#16a34a" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="26" y="14" width="12" height="22" rx="6" fill="url(#g6b)" />
+                            <path d="M20 30 Q20 44 32 44 Q44 44 44 30" fill="none" stroke="url(#g6b)" stroke-width="3"
+                                stroke-linecap="round" />
+                            <line x1="32" y1="44" x2="32" y2="54" stroke="url(#g6b)" stroke-width="3"
+                                stroke-linecap="round" />
+                            <line x1="25" y1="54" x2="39" y2="54" stroke="url(#g6b)" stroke-width="3"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="size-label">48px</div>
+                </div>
+                <div>
+                    <div class="favicon-small">
+                        <svg viewBox="0 0 64 64" width="16" height="16">
+                            <defs>
+                                <linearGradient id="g6c" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#16a34a" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="24" y="12" width="16" height="24" rx="8" fill="url(#g6c)" />
+                            <path d="M18 30 Q18 46 32 46 Q46 46 46 30" fill="none" stroke="url(#g6c)" stroke-width="4"
+                                stroke-linecap="round" />
+                            <line x1="32" y1="46" x2="32" y2="56" stroke="url(#g6c)" stroke-width="4" />
+                        </svg>
+                    </div>
+                    <div class="size-label">16px</div>
+                </div>
+            </div>
+            <div class="tab-preview">
+                <svg viewBox="0 0 64 64" class="tab-favicon">
+                    <defs>
+                        <linearGradient id="g6d" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0ea5e9" />
+                            <stop offset="100%" stop-color="#16a34a" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="24" y="12" width="16" height="24" rx="8" fill="url(#g6d)" />
+                    <path d="M18 30 Q18 46 32 46 Q46 46 46 30" fill="none" stroke="url(#g6d)" stroke-width="4"
+                        stroke-linecap="round" />
+                    <line x1="32" y1="46" x2="32" y2="56" stroke="url(#g6d)" stroke-width="4" />
+                </svg>
+                <span>Ajay Beniwal — AI Engi...</span>
+            </div>
+        </div>
+
+    </div>
+
+    <p style="text-align:center; color:#555; margin-top:48px; font-size:13px;">
+        Options 1, 4 & 6 have live animations (pulsing waves/bars) — these will animate in the browser tab!
+    </p>
+</body>
+
+</html>

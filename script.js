@@ -6,13 +6,12 @@
   'use strict';
 
   // ──────────────────────────────────────────────
-  // 1. NEURAL NETWORK PARTICLE CANVAS
+  // 1. MAGNETO FLUID CANVAS
   // ──────────────────────────────────────────────
   const canvas = document.getElementById('heroCanvas');
   const ctx = canvas.getContext('2d');
-  let particles = [];
-  let mouse = { x: null, y: null };
   let animFrame;
+  let mouse = { x: null, y: null, active: false };
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -21,89 +20,92 @@
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.radius = Math.random() * 1.8 + 0.5;
-      this.opacity = Math.random() * 0.5 + 0.15;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(99, 102, 241, ${this.opacity})`;
-      ctx.fill();
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      // Mouse repulsion
-      if (mouse.x !== null) {
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          const force = (120 - dist) / 120 * 0.02;
-          this.vx += dx * force;
-          this.vy += dy * force;
-        }
-      }
-      // Damping
-      this.vx *= 0.99;
-      this.vy *= 0.99;
-      // Wrap
-      if (this.x < 0) this.x = canvas.width;
-      if (this.x > canvas.width) this.x = 0;
-      if (this.y < 0) this.y = canvas.height;
-      if (this.y > canvas.height) this.y = 0;
-    }
+  // ── Metaball / Magneto blobs ──
+  const NUM_BLOBS = 8;
+  const blobs = [];
+
+  for (let i = 0; i < NUM_BLOBS; i++) {
+    const angle = (i / NUM_BLOBS) * Math.PI * 2;
+    blobs.push({
+      x: window.innerWidth / 2 + Math.cos(angle) * 200,
+      y: window.innerHeight / 2 + Math.sin(angle) * 200,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      r: 80 + Math.random() * 80,
+      hue: 240 + Math.random() * 60 - 30,  // indigo/purple range
+    });
   }
 
-  function initParticles() {
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 8000), 180);
-    particles = [];
-    for (let i = 0; i < count; i++) {
-      particles.push(new Particle());
-    }
-  }
-  initParticles();
-
-  function drawConnections() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          const opacity = (1 - dist / 150) * 0.12;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
-          ctx.lineWidth = 0.6;
-          ctx.stroke();
-        }
-      }
-    }
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
   }
 
   function animateCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    drawConnections();
+
+    // Draw soft gradient blobs
+    for (const blob of blobs) {
+      // Autonomous drifting
+      blob.x += blob.vx;
+      blob.y += blob.vy;
+
+      // Gentle bounce off edges
+      if (blob.x < -blob.r) blob.x = canvas.width + blob.r;
+      if (blob.x > canvas.width + blob.r) blob.x = -blob.r;
+      if (blob.y < -blob.r) blob.y = canvas.height + blob.r;
+      if (blob.y > canvas.height + blob.r) blob.y = -blob.r;
+
+      // Magneto cursor attraction
+      if (mouse.active && mouse.x !== null) {
+        const dx = mouse.x - blob.x;
+        const dy = mouse.y - blob.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const magnetRadius = 350;
+        if (dist < magnetRadius) {
+          const pull = ((magnetRadius - dist) / magnetRadius) * 0.012;
+          blob.vx += dx * pull;
+          blob.vy += dy * pull;
+        }
+      }
+
+      // Damping to prevent runaway speeds
+      blob.vx *= 0.97;
+      blob.vy *= 0.97;
+
+      // Draw radial gradient blob
+      const grad = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.r);
+      grad.addColorStop(0, `hsla(${blob.hue}, 70%, 60%, 0.18)`);
+      grad.addColorStop(0.5, `hsla(${blob.hue}, 60%, 55%, 0.08)`);
+      grad.addColorStop(1, `hsla(${blob.hue}, 50%, 50%, 0)`);
+      ctx.beginPath();
+      ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+
+    // Mouse "cursor glow" blob — follows cursor precisely
+    if (mouse.active && mouse.x !== null) {
+      const mg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 120);
+      mg.addColorStop(0, 'rgba(99, 102, 241, 0.22)');
+      mg.addColorStop(0.5, 'rgba(139, 92, 246, 0.10)');
+      mg.addColorStop(1, 'rgba(6,  182, 212, 0)');
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 120, 0, Math.PI * 2);
+      ctx.fillStyle = mg;
+      ctx.fill();
+    }
+
     animFrame = requestAnimationFrame(animateCanvas);
   }
   animateCanvas();
 
-  // Hero mouse parallax
+  // Track mouse
   document.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    mouse.active = true;
+
+    // Subtle hero content parallax
     const hero = document.querySelector('.hero-content');
     if (hero) {
       const cx = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -111,6 +113,8 @@
       hero.style.transform = `translate(${cx * 8}px, ${cy * 5}px)`;
     }
   });
+
+  document.addEventListener('mouseleave', () => { mouse.active = false; });
 
   // ──────────────────────────────────────────────
   // 2. SCROLL REVEAL (IntersectionObserver)
@@ -540,37 +544,5 @@
   // Add smooth transition to loader sub text
   if (loaderSub) loaderSub.style.transition = 'opacity 0.2s';
 
-  // ──────────────────────────────────────────────
-  // 17. LIGHT/DARK THEME TOGGLE
-  // ──────────────────────────────────────────────
-  const themeToggle = document.getElementById('themeToggle');
-  const htmlEl = document.documentElement;
-
-  // Check local storage or OS preference
-  const savedTheme = localStorage.getItem('theme');
-  const osPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-
-  if (savedTheme === 'light' || (!savedTheme && osPrefersLight)) {
-    htmlEl.setAttribute('data-theme', 'light');
-    updateCanvasColor('light');
-  }
-
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = htmlEl.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-    htmlEl.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateCanvasColor(newTheme);
-  });
-
-  function updateCanvasColor(theme) {
-    if (theme === 'light') {
-      // Darker particles for light bg
-      // We can't easily change the class instance property without re-init or exposure
-      // But we can re-initialize the canvas if needed.
-      // For now, let's keep it simple as the purple color works on white too.
-    }
-  }
 
 })();

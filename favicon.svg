@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="12" fill="none" stroke="url(#g)" stroke-width="2" opacity="0.4"/>
+  <rect x="6" y="6" width="52" height="52" rx="12" fill="url(#g)" opacity="0.08"/>
+  <!-- A -->
+  <path d="M16 46 L26 18 L30 18 L22 46 Z" fill="url(#g)"/>
+  <rect x="18" y="34" width="10" height="3" rx="1" fill="url(#g)"/>
+  <!-- I -->
+  <rect x="36" y="18" width="5" height="28" rx="2" fill="url(#g)"/>
+  <rect x="34" y="18" width="9" height="3" rx="1" fill="url(#g)"/>
+  <rect x="34" y="43" width="9" height="3" rx="1" fill="url(#g)"/>
+  <!-- Circuit dots -->
+  <circle cx="10" cy="32" r="2" fill="#0ea5e9" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="54" cy="32" r="2" fill="#2563eb" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="32" cy="10" r="2" fill="#0ea5e9" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="32" cy="54" r="2" fill="#2563eb" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>
