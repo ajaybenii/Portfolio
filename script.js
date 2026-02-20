@@ -22,12 +22,11 @@
   resizeCanvas();
   window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
 
-  // Particle colour palette — dark & crisp on white background
+  // Particle colour palette — glowing cyan & teal for dark background
   const PARTICLE_COLORS = [
-    { fill: 'rgba(25,  35, 115, 0.88)', stroke: 'rgba(0,   0,  40, 0.95)' },  // deep navy
-    { fill: 'rgba(55,  80, 210, 0.82)', stroke: 'rgba(10, 20,  90, 0.95)' },  // indigo-blue
-    { fill: 'rgba(18,  55, 165, 0.88)', stroke: 'rgba(0,   0,  65, 0.95)' },  // royal blue
-    { fill: 'rgba(72,  36, 182, 0.82)', stroke: 'rgba(18,  0,  80, 0.95)' },  // deep violet
+    { fill: 'rgba(6,  182, 212, 0.8)', stroke: 'rgba(6,  182, 212, 1)' },    // cyan
+    { fill: 'rgba(45, 212, 191, 0.8)', stroke: 'rgba(45, 212, 191, 1)' },    // teal
+    { fill: 'rgba(14, 165, 233, 0.8)', stroke: 'rgba(14, 165, 233, 1)' },    // light blue
   ];
 
   class Particle {
@@ -92,11 +91,11 @@
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 140) {
-          const alpha = (1 - dist / 140) * 0.55;   // clearly visible lines
+          const alpha = (1 - dist / 140) * 0.6;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(25, 45, 160, ${alpha})`;  // dark blue lines
+          ctx.strokeStyle = `rgba(6, 182, 212, ${alpha * 0.7})`;  // cyan lines
           ctx.lineWidth = 0.9;
           ctx.stroke();
         }
@@ -133,17 +132,14 @@
   const revealElements = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry, idx) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Stagger children with delay
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, idx * 80);
+          entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.05, rootMargin: '0px 0px 50px 0px' }
   );
   revealElements.forEach(el => revealObserver.observe(el));
 
