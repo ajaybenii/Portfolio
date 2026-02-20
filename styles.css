@@ -574,11 +574,10 @@ img {
    GLASS CARD
    ════════════════════════════════════════════════════ */
 .glass-card {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.1);
   border-radius: var(--radius-lg);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
@@ -594,8 +593,6 @@ img {
    ════════════════════════════════════════════════════ */
 .product-section {
   padding: 80px 0;
-  background: #0f172a;
-  color: #ffffff;
 }
 
 .product-grid {
@@ -628,19 +625,18 @@ img {
   font-weight: 800;
   letter-spacing: -0.5px;
   margin-bottom: 8px;
-  color: #ffffff;
 }
 
 .product-tagline {
   font-size: 1rem;
-  color: #94a3b8;
+  color: var(--accent-2);
   font-weight: 500;
   margin-bottom: 16px;
 }
 
 .product-desc {
   font-size: 0.95rem;
-  color: #cbd5e1;
+  color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 24px;
 }
@@ -654,25 +650,14 @@ img {
 
 .feature-list li {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: #e2e8f0;
-  line-height: 1.5;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }
 
 .feat-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  margin-top: -2px;
+  font-size: 1rem;
 }
 
 .product-actions {
@@ -790,10 +775,11 @@ img {
   transform: translateY(0) scale(1);
 }
 
+/* Status badge pulse on entry */
 .product-section .product-actions {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.5s var(--ease-out) 0.6s, transform 0.5s var(--ease-out) 0.6s;
+  transition: opacity 0.5s var(--ease-out) 0.7s, transform 0.5s var(--ease-out) 0.7s;
 }
 
 .product-section.in-view .product-actions {
@@ -825,7 +811,7 @@ img {
    ════════════════════════════════════════════════════ */
 .demo-card {
   padding: 0;
-  background: #0f172a;
+  background: #ffffff;
 }
 
 .demo-header {
@@ -833,8 +819,8 @@ img {
   align-items: center;
   gap: 12px;
   padding: 14px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  background: #f8f9ff;
   font-size: 0.8rem;
 }
 
@@ -1735,8 +1721,7 @@ img {
    TECH STACK
    ════════════════════════════════════════════════════ */
 .tech-section {
-  padding: 100px 0;
-  background: #0f172a;
+  background: var(--bg-secondary);
 }
 
 .tech-grid {
