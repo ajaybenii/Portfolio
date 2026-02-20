@@ -78,7 +78,8 @@
   }
 
   function initParticles() {
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 7000), 160);
+    // Reduce particle count slightly to drastically improve O(N^2) performance
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 110);
     particles = [];
     for (let i = 0; i < count; i++) particles.push(new Particle());
   }
@@ -89,8 +90,11 @@
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 140) {
+        const distSq = dx * dx + dy * dy;
+
+        // Use squared distance for huge performance gain (no Math.sqrt)
+        if (distSq < 19600) { // 140 * 140
+          const dist = Math.sqrt(distSq);
           const alpha = (1 - dist / 140) * 0.6;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
@@ -132,14 +136,17 @@
   const revealElements = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
+      entries.forEach((entry, idx) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          // Stagger children with delay
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
           revealObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.05, rootMargin: '0px 0px 50px 0px' }
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
   revealElements.forEach(el => revealObserver.observe(el));
 
